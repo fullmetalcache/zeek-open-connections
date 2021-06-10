@@ -52,7 +52,7 @@ module OpenConnection;
 # Each time an entry is written, it contains the TOTAL duration and bytes
 # for the connection, not the incremental from the last entry. The information
 # is identical to what is written out to conn.log
-const ALERT_INTERVAL = 1hr;
+const ALERT_INTERVAL = 1min;
 
 export {
         redef enum Log::ID += { LOG };
@@ -72,7 +72,7 @@ redef record connection += {
 
 event zeek_init() &priority=5
         {
-        Log::create_stream(LOG, [$columns=Conn::Info, $path="conn_long"]);
+        Log::create_stream(LOG, [$columns=Conn::Info, $path="open_conn"]);
         }
 
 
